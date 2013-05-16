@@ -15,6 +15,7 @@ class PostController < Formotion::FormController
         
           key: :content,
           placeholder: "content",
+          auto_correction: :no,
           type: :string
    
         }],
@@ -47,8 +48,7 @@ class PostController < Formotion::FormController
     #SVProgressHUD.showWithStatus("Adding…", maskType:SVProgressHUDMaskTypeGradient)
     BW::HTTP.post(API_LOGIN_ENDPOINT, { headers: headers, payload: data } ) do |response|
       @welcomeController = WelcomeController.alloc.init
-      self.navigationController.dismissModalViewControllerAnimated(true)
-      self.navigationController.pushViewController(@welcomeController, animated:false)
+      self.navigationController.setViewControllers([@welcomeController], animated:false)
     end
   end
 end
